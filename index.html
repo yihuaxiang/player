@@ -20,7 +20,7 @@
   </head>
   <body class="content__default" id="ctn">
     <h1>吃瓜视频🍉🍉🍉</h1>
-    <img src="" />
+    <img src="" id="img" />
     <video
       src="videos/gone.mp4"
       id="video"
@@ -80,7 +80,7 @@
       ctn.classList.add(type);
 
       if (type == 'image') {
-        
+        document.querySelector('#img').src = videos;
       } else if (type == 'video') {
         document.querySelector('#video').src = videos;
       } else {
