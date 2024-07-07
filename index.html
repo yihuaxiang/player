@@ -8,7 +8,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="https://z.wiki/favicon.ico"/>
       <meta name="keywords" content="敖武的博客 自定义视频播放组件 小游戏 web游戏 html 前端程序员"/>
       <meta name="description" content="敖武的博客 自定义视频播放组件 小游戏 web游戏 html 前端程序员"/>
-    <title>自定义视频播放组件</title>
+    <title>智能播放器</title>
     <link
       href="https://6.z.wiki/autoupload/20230324/udYh.font-awesome.min.css"
       rel="stylesheet"
@@ -18,13 +18,14 @@
     <link rel="stylesheet" href="https://playground.z.wiki/custom-video-player/css/progress.css" />
     <link rel="stylesheet" href="https://playground.z.wiki/custom-video-player/css/style.css" />
   </head>
-  <body class="content__default">
+  <body class="content__default" id="ctn">
     <h1>吃瓜视频🍉🍉🍉</h1>
+    <img src="" />
     <video
       src="videos/gone.mp4"
       id="video"
       class="screen"
-      poster="https://2.z.wiki/autoupload/20240707/fHFI/512X512/image.png"
+      poster="https://0.z.wiki/autoupload/20240707/fHFI/512X512/image.png"
     ></video>
     <div class="controls">
       <button class="btn" id="play">
@@ -47,8 +48,44 @@
 
     <script src="https://playground.z.wiki/custom-video-player/script.js"></script>
     <script type="text/javascript">
+      function determineContentTypeByExtension(url) {
+          // 定义图片和视频扩展名列表 (小写)
+          var imageExtensions = ['jpeg', 'jpg', 'png', 'gif', 'bmp', 'webp', 'svg', 'tiff', 'ico'];
+          var videoExtensions = ['mp4', 'webm', 'ogg', 'avi', 'wmv', 'mov', 'flv', 'mkv', 'm4v'];
+      
+          // 获取 URL 中的文件扩展名
+          var parts = url.split('.');
+          var extension = parts[parts.length - 1] || '';
+          extension = extension.split(/\#|\?/)[0].toLowerCase();
+      
+          // 判断扩展名是否在图片扩展名列表中
+          if (imageExtensions.indexOf(extension) !== -1) {
+              return 'image';
+          }
+      
+          // 判断扩展名是否在视频扩展名列表中
+          if (videoExtensions.indexOf(extension) !== -1) {
+              return 'video';
+          }
+      
+          // 其他类型
+          return 'other';
+      }
+
+      
       var videos = new URLSearchParams(location.search).get("video")
-      document.querySelector('#video').src = videos;
+
+      var type = determineContentTypeByExtension(videos);
+      var ctn = document.querySelector('#ctn');
+      ctn.classList.add(type);
+
+      if (type == 'image') {
+        
+      } else if (type == 'video') {
+        document.querySelector('#video').src = videos;
+      } else {
+        // TODO 点击直接下载这个 URL 的内容
+      }
     </script>
   </body>
 </html>
