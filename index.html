@@ -251,7 +251,7 @@ h1 {
         document.write(videoTag);
       } else if (type == 'video') {
         // 采用传统字符串拼接方法，确保兼容性
-        var videoTag = '<video src="' + videos + '" id="video" class="screen" autoplay></video>';
+        var videoTag = '<video controls src="' + videos + '" id="video" class="screen" autoplay></video>';
         // 使用 document.write 输出视频标签
         document.write(videoTag);
       } else {
