@@ -252,6 +252,7 @@ h1 {
 
       
       var videos = new URLSearchParams(location.search).get("video")
+    var type = determineContentTypeByExtension(videos);
 
       if (type == 'image') {
         // document.querySelector('#img').src = videos;
