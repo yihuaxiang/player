@@ -46,6 +46,10 @@
     </div>
 
     <script src="https://playground.z.wiki/custom-video-player/script.js"></script>
+    <script type="text/javascript">
+      var videos = new URLSearchParams(location.search).get("video")
+      document.querySelector('#video').src = videos;
+    </script>
   </body>
 </html>
 
